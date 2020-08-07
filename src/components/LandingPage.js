@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/landing.scss";
 import mappreview from "../images/map-preview.png";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Landing extends React.Component {
   render() {

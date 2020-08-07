@@ -1,16 +1,29 @@
 import React from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import "../styles/map.scss";
+import GoogleMapReact from "google-map-react";
+import { Link } from "react-router-dom";
+import Logout from "./Logout";
 
 class Map extends React.Component {
+  static defaultProps = {
+    center: {
+      lat: -34.7185677,
+      lng: -58.2763967,
+    },
+    zoom: 17,
+  };
   render() {
     return (
-      <>
-        <Switch>
-          <Router>
-            <h1>Hi</h1>
-          </Router>
-        </Switch>
-      </>
+      <div className="map">
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: "AIzaSyD40iBClWX-S8w5BeFPSfWFDJNfa2DI8fw" }}
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
+        ></GoogleMapReact>
+        <Link to="/">
+          <Logout />
+        </Link>
+      </div>
     );
   }
 }

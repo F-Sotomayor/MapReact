@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --primary: dodgerblue;
+  --primary-lighter: lightblue;
+  --accent: white;
+  --negative: #333;
+}
+.logout {
+  position: absolute;
+  z-index: 1000;
+  top: 93vh;
+  left: 1vw;
+  border: none;
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: var(--accent);
+  transition: all 0.2s;
+  &:hover {
+    transform: translateY(-2px);
+    background-color: var(--primary-lighter);
+    color: var(--negative);
+  }
+}
