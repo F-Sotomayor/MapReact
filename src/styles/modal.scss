@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.popModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 950;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(126, 126, 126, 0.801);
+  .modalContainer {
+    display: flex;
+    flex: 0.3;
+    height: 80vh;
+    border-radius: 24px;
+    padding: 12px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgb(15, 15, 15);
+    .modalTitle {
+      justify-content: center;
+      align-items: center;
+      flex: 0.1;
+      width: 100%;
+      display: flex;
+      color: white;
+      font-size: 20px;
+    }
+  }
+}

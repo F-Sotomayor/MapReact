@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import "../styles/logout.scss";
 
 class Logout extends React.Component {

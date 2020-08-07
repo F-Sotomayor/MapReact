@@ -3,6 +3,7 @@ import "../styles/map.scss";
 import GoogleMapReact from "google-map-react";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
+import Modal from "./Modal";
 
 class Map extends React.Component {
   static defaultProps = {
@@ -23,6 +24,7 @@ class Map extends React.Component {
         <Link to="/">
           <Logout />
         </Link>
+        <Modal />
       </div>
     );
   }
