@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/landing.scss";
 import mappreview from "../images/map-preview.png";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 class Landing extends React.Component {
   render() {
@@ -16,7 +17,9 @@ class Landing extends React.Component {
           </div>
 
           <div className="landing-login">
-            <button>Ingresar!</button>
+            <Link to="/map">
+              <button>Ingresar!</button>
+            </Link>
           </div>
         </div>
       </div>
