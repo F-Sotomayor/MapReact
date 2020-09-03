@@ -1,10 +1,13 @@
 import React from "react";
 import "../styles/logout.scss";
+import { auth } from "../firebase";
 
-class Logout extends React.Component {
-  render() {
-    return <button className="logout">Cerrar Sesion</button>;
-  }
-}
+const Logout = () => {
+  return (
+    <button className="logout" onClick={() => auth.signOut()}>
+      Cerrar Sesion
+    </button>
+  );
+};
 
 export default Logout;

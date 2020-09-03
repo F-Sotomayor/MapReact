@@ -1,26 +1,19 @@
 import React from "react";
 import "./styles/App.scss";
-import NavBar from "./components/NavBar";
-import Landing from "./components/LandingPage";
+import Landing from "./components/LandingPage/LandingPage";
 import Map from "./components/Map";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { auth } from "./firebase";
 
-class App extends React.Component {
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <Route path="/" exact>
-            <NavBar />
-            <Landing />
-          </Route>
-          <Route path="/map" exact>
-            <Map />
-          </Route>
-        </Switch>
-      </Router>
-    );
-  }
+function App() {
+  const [user, setUser] = React.useState(null);
+
+  React.useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  }, []);
+
+  return user ? <Map /> : <Landing />;
 }
 
 export default App;

@@ -1,11 +1,13 @@
 import React from "react";
-import "../styles/landing.scss";
-import mappreview from "../images/map-preview.png";
-import { Link } from "react-router-dom";
+import "./landing.scss";
+import mappreview from "../../images/map-preview.png";
+import NavBar from "./NavBar";
+import { auth, providers } from "../../firebase";
 
-class Landing extends React.Component {
-  render() {
-    return (
+const Landing = () => {
+  return (
+    <div>
+      <NavBar />
       <div className="landing-container">
         <div className="landing-wrap">
           <div className="landing-title">
@@ -17,14 +19,18 @@ class Landing extends React.Component {
           </div>
 
           <div className="landing-login">
-            <Link to="/map">
-              <button>Ingresar!</button>
-            </Link>
+            <button
+              onClick={() => {
+                auth.signInWithPopup(providers.google);
+              }}
+            >
+              Ingresar!
+            </button>
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Landing;

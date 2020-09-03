@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.markerContainer {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 3000;
+}
+.infoWindow {
+  font-size: 12px;
+  width: 15vw;
+  height: auto;
+  flex-direction: column;
+  position: absolute;
+  justify-content: center;
+  align-items: flex-start;
+  top: -115px;
+  left: -100px;
+  border-radius: 6px;
+  padding: 6px;
+  color: white;
+  background-color: rgba(65, 84, 189, 0.897);
+}
