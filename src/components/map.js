@@ -8,6 +8,7 @@ const Map = () => {
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
   const [draft, setDraft] = React.useState(null);
+  const [report, setReport] = React.useState(null);
 
   function handleSubmit() {
     setMarkers((markers) => markers.concat(draft));
@@ -24,15 +25,32 @@ const Map = () => {
             <div className="reports">
               <label>
                 Iluminacion
-                <input type="radio" name="report" value="Iluminacion" />
+                <input
+                  onChange={(event) => setReport(event.target.value)}
+                  type="radio"
+                  name="report"
+                  value="Iluminacion"
+                />
               </label>
               <label>
                 Inseguridad
-                <input type="radio" name="report" value="Inseguridad" />
+                <input
+                  onChange={(event) => setReport(event.target.value)}
+                  type="radio"
+                  name="report"
+                  value="Inseguridad"
+                />
               </label>
               <label>
                 Terreno
-                <input type="radio" name="report" value=" Terreno" />
+                <input
+                  onChange={(event) => {
+                    setReport(event.target.value);
+                  }}
+                  type="radio"
+                  name="report"
+                  value="Terreno"
+                />
               </label>
             </div>
             <div className="note">Agregue una nota</div>
@@ -63,8 +81,9 @@ const Map = () => {
           setDraft({
             lat: e.lat,
             lng: e.lng,
-            id: +new Date(),
-            report: "Iluminacion",
+            id: new Date().toLocaleString(),
+            desc: "asd",
+            report: `${report}`,
           });
         }}
       >
@@ -72,7 +91,9 @@ const Map = () => {
           <Marker
             lat={marker.lat}
             lng={marker.lng}
+            posted={marker.id}
             key={marker.id}
+            note={marker.desc}
             type={marker.report}
             isSelected={selected === marker.id}
             onSelect={() => setSelected(marker.id)}

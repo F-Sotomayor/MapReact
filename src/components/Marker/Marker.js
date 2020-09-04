@@ -7,7 +7,11 @@ const Marker = ({ isSelected, onSelect, ...marker }) => {
     <>
       {isSelected && (
         <div className="infoWindow">
-          <InfoWindow />
+          <InfoWindow
+            type={`${marker.type}`}
+            note={`${marker.note}`}
+            posted={`${marker.posted}`}
+          />
         </div>
       )}
       <div className="markerContainer">

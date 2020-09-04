@@ -1,11 +1,11 @@
 import React from "react";
 
-function InfoWindow() {
+function InfoWindow(props) {
   return (
     <div>
-      <div>Tipo: Iluminacion</div>
-      <div>Nota: Es una calle muy peligrosa, tengan cuidado</div>
-      <div>Fecha: 20/05/2020</div>
+      <div>Tipo: {props.type}</div>
+      <div>Nota: {props.note}</div>
+      <div>Fecha: {props.posted}</div>
     </div>
   );
 }
