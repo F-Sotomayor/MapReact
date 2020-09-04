@@ -3,6 +3,8 @@ import "../styles/map.scss";
 import GoogleMapReact from "google-map-react";
 import Logout from "./Logout";
 import Marker from "./Marker/Marker";
+import "firebase/firestore";
+import { database } from "../firebase";
 
 const Map = () => {
   const [markers, setMarkers] = React.useState([]);
@@ -12,13 +14,33 @@ const Map = () => {
   const [note, setNote] = React.useState(null);
 
   function handleSubmit() {
+    setNote(() => (draft.desc = note));
+    setReport(() => (draft.report = report));
     setMarkers((markers) => markers.concat(draft));
+    database.collection("Markers").doc(`${markers.length}`).set({
+      Informacion: draft,
+    });
+    setNote(null);
+    setReport(null);
     setDraft(null);
   }
+
+  React.useEffect(() => {
+    database
+      .collection("Markers")
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          setMarkers((markers) => markers.concat(doc.data().Informacion));
+        });
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <div className="map">
       {draft && (
+        // Modal
         <div className="modal">
           <div className="backdrop"></div>
           <div className="content">
@@ -31,6 +53,7 @@ const Map = () => {
                   type="radio"
                   name="report"
                   value="Iluminacion"
+                  required
                 />
               </label>
               <label>
@@ -40,17 +63,17 @@ const Map = () => {
                   type="radio"
                   name="report"
                   value="Inseguridad"
+                  required
                 />
               </label>
               <label>
                 Terreno
                 <input
-                  onChange={(event) => {
-                    setReport(event.target.value);
-                  }}
+                  onChange={(event) => setReport(event.target.value)}
                   type="radio"
                   name="report"
                   value="Terreno"
+                  required
                 />
               </label>
             </div>
@@ -61,12 +84,15 @@ const Map = () => {
               placeholder="Agregue una nota a su reporte.."
               cols="20"
               rows="5"
+              maxLength="50"
             />
             <div className="buttons">
               <button onClick={handleSubmit}>Enviar</button>
               <button
                 onClick={() => {
                   setDraft(null);
+                  setNote(null);
+                  setReport(null);
                 }}
               >
                 Cancelar
@@ -84,8 +110,8 @@ const Map = () => {
             lat: e.lat,
             lng: e.lng,
             id: new Date().toLocaleString(),
-            desc: `${note}`,
-            report: `${report}`,
+            desc: note,
+            report: report,
           });
         }}
       >
