@@ -9,6 +9,7 @@ const Map = () => {
   const [selected, setSelected] = React.useState(null);
   const [draft, setDraft] = React.useState(null);
   const [report, setReport] = React.useState(null);
+  const [note, setNote] = React.useState(null);
 
   function handleSubmit() {
     setMarkers((markers) => markers.concat(draft));
@@ -55,6 +56,7 @@ const Map = () => {
             </div>
             <div className="note">Agregue una nota</div>
             <textarea
+              onChange={(event) => setNote(event.target.value)}
               resize="none"
               placeholder="Agregue una nota a su reporte.."
               cols="20"
@@ -82,7 +84,7 @@ const Map = () => {
             lat: e.lat,
             lng: e.lng,
             id: new Date().toLocaleString(),
-            desc: "asd",
+            desc: `${note}`,
             report: `${report}`,
           });
         }}
