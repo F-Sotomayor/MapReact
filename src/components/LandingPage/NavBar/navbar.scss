@@ -45,3 +45,12 @@
     }
   }
 }
+
+@media (max-width: 1050px) {
+  .navbar-container .navbar-social {
+    flex: 3;
+  }
+  .navbar-container .navbar-logo {
+    flex: 1;
+  }
+}
