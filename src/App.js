@@ -1,9 +1,9 @@
 import React from "react";
 import "./styles/App.scss";
-import Landing from "./components/LandingPage/LandingPage";
-import Map from "./components/Map";
-import { auth } from "./firebase";
-import Panel from "./components/Panel/Panel";
+import Landing from "./components/LandingPage/LandingPage.js";
+import Map from "./components/Map.js";
+import { auth } from "./firebase.js";
+import Panel from "./components/Panel/Panel.js";
 
 function App() {
   const [user, setUser] = React.useState(null);
